@@ -168,3 +168,46 @@
    terraform init
    terraform apply
    ```
+
+### Deploying the Application to Heroku using Docker
+
+1. **Ensure you have a `Procfile` in the root directory of your repository.** This file should specify the command to run your application. For example:
+   ```plaintext
+   web: python app.py
+   ```
+
+2. **Create a `requirements.txt` file in the root directory of your repository if it doesn't already exist.** This file should list all the dependencies required by your application.
+
+3. **Log in to Heroku using the Heroku CLI:**
+   ```sh
+   heroku login
+   ```
+
+4. **Create a new Heroku application:**
+   ```sh
+   heroku create
+   ```
+
+5. **Add a `heroku.yml` file to the root directory of your repository to define the build and run configuration for your application.** For example:
+   ```yaml
+   build:
+     docker:
+       web: Dockerfile
+   ```
+
+6. **Push your code to Heroku:**
+   ```sh
+   git push heroku main
+   ```
+
+7. **Scale your application to run at least one instance:**
+   ```sh
+   heroku ps:scale web=1
+   ```
+
+8. **Open your application in a web browser:**
+   ```sh
+   heroku open
+   ```
+
+These steps will help you deploy your application to Heroku using Docker. Make sure to update the `Dockerfile` and `requirements.txt` files as needed to match your application's requirements.
